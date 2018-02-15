@@ -82,13 +82,13 @@ cd myproject/build
 To add a package run:
 
 ```sh
-docker-compose run --rm composer require some/library
+sudo docker-compose run --rm composer require some/library
 ```
 
 To update all packages run:
 
 ```sh
-docker-compose run --rm composer update
+sudo docker-compose run --rm composer update
 ```
 
 This will update `composer.json` and `composer.lock` respectively. You can
@@ -113,7 +113,7 @@ Before you continue with building the base image you should:
 To build the base image, again go to the `./build` directory and run:
 
 ```sh
-docker-compose build
+sudo docker-compose build
 ```
 
 Now you could upload that image to your container registry.
@@ -154,9 +154,9 @@ database. Then you should be ready to start your container and initialize
 your database (if your project has one):
 
 ```sh
-docker-compose up -d
+sudo docker-compose up -d
 # Wait some seconds to let the DB container fire up ...
-docker-compose exec web ./yii migrate
+sudo docker-compose exec web ./yii migrate
 ```
 
 When done, you can access the new app from
@@ -168,7 +168,7 @@ When done, you can access the new app from
 >
 > To fix this, run:
 >
->     docker-compose exec web chown www-data web/assets runtime var/sessions
+>     sudo docker-compose exec web chown www-data web/assets runtime var/sessions
 >
 
 ## 3.2 Development Session
@@ -176,17 +176,17 @@ When done, you can access the new app from
 A development session will usually go like this:
 
 ```sh
-docker-compose up -d
+sudo docker-compose up -d
 # edit files, check, tests, ...
 git add .
 git commit -m 'Implemented stuff'
-docker-compose stop
+sudo docker-compose stop
 ```
 
 > **Note:** Another approach is to leave a terminal window open and start the
 > container with
 >
->     docker-compose up
+>     sudo docker-compose up
 >
 > This way you can always follow the live logs of your container. To stop all
 > containers, press `Ctrl-c`.
@@ -197,7 +197,7 @@ If you need to run yiic commands you execute them in the running development
 container:
 
 ```sh
-docker-compose exec web ./yiic migrate/create add_column_name
+sudo docker-compose exec web ./yiic migrate/create add_column_name
 ```
 
 > **Note:** If a command creates new files on your host (e.g. a new migration)
@@ -231,7 +231,7 @@ For some IDEs it's useful to have the composer packages available on your local
 host system. To do so you can simply copy them from inside the container:
 
 ```
-docker-compose exec web cp -rf /var/www/vendor ./
+sudo docker-compose exec web cp -rf /var/www/vendor ./
 ```
 
 > **Note:** Inside the container composer packages live in `/var/www/vendor`
