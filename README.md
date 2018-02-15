@@ -9,6 +9,11 @@ A template for docker based Yii 2 applications.
  * Base scaffold code for login, signup and forgot-password actions
  * Flat configuration file structure
 
+# Install Docker
+
+Please see [install-docker.md](install-docker.md) file for instructions on how
+to install the latest Docker CE with a single command line.
+
 # 1 Main Concepts
 
 ## 1.1 Base Image
